@@ -2,6 +2,7 @@ package dao
 
 import (
 	"log"
+	. "movies/models"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -40,6 +41,11 @@ func (m *MoviesDAO) FindById(id string) (Movie, error) {
 
 func (m *MoviesDAO) Insert(movie Movie) error {
 	err := db.C(COLLECTION).Insert(&movie)
+	return err
+}
+
+func (m *MoviesDAO) Delete(movie Movie) error {
+	err := db.C(COLLECTION).Remove(&movie)
 	return err
 }
 
